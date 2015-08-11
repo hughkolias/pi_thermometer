@@ -17,7 +17,9 @@ end
 
 den = Thermometer.new
 
-while i > 1 do
-	print_temperature
-	sleep.5
+i = 0
+
+while i < 1 do
+	den.print_temperature
+	sleep(5)
 end
