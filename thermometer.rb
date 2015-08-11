@@ -15,4 +15,9 @@ class Thermometer
 
 end
 
-den = Thermometer.new.print_temperature
+den = Thermometer.new
+
+while i > 1 do
+	print_temperature
+	sleep.5
+end
