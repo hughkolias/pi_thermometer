@@ -25,27 +25,45 @@ class RelaySwitcher
 	attr_accessor :dir
 
 	def initialize
-		@heat = PiPiper::Pin.new(:pin => 17, :direction => :out)
-		@cool = PiPiper::Pin.new(:pin => 27, :direction => :out)
-		@fan = PiPiper::Pin.new(:pin =>22, :direction => :out)
+		@compressor = PiPiper::Pin.new(:pin => 17, :direction => :out)
+		@fan = PiPiper::Pin.new(:pin => 27, :direction => :out)
+		@heat = PiPiper::Pin.new(:pin =>22, :direction => :out)
 	end
 
 	def switch_on_heat
-		#@heat.output(:out)
+		@fan.on
+		sleep(1)
 		@heat.on
+		sleep(1)
+		@compressor.on
 	end
 
 	def switch_off_heat
-		#@heat.output(:in)
+		@compressor.off
+		sleep(1)
 		@heat.off
+		sleep(1)
+		@fan.off
 	end
 
 	def switch_on_cool
-		@cool.on
+		@fan.on
+		sleep(1)
+		@compressor.on
 	end
 
 	def switch_off_cool
-		@cool.off
+		@compressor.off
+		sleep(1)
+		@fan.off
+	end
+
+	def switch_on_fan
+		@fan.on
+	end
+
+	def switch_off_fan
+		@fan.off
 	end
  
 
@@ -59,22 +77,22 @@ class Logic
 
 end
 
-den = Thermometer.new
-relay = RelaySwitcher.new
+thermometer = Thermometer.new
+thermostat = RelaySwitcher.new
 
 i = 0
 
 while i < 1 do
-	den.print_temperature
-	temperature = den.get_temperature.to_f
-	if temperature > 29.0
-		relay.switch_off_heat
-		sleep(2)
-		relay.switch_on_cool
-	else
-		relay.switch_off_cool
-		sleep(2)
-		relay.switch_on_heat
-	end
-	sleep(1)
+	thermometer.print_temperature
+	# temperature = den.get_temperature.to_i
+	# if temperature > 24
+	# 	relay.switch_off_heat
+	# 	sleep(2)
+	# 	relay.switch_on_cool
+	# else
+	# 	relay.switch_off_cool
+	# 	sleep(2)
+	# 	relay.switch_on_heat
+	# end
+	# sleep(1)
 end
