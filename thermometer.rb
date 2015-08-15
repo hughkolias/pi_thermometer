@@ -9,7 +9,7 @@ class Thermometer
 	end
 
 	def print_temperature
-		puts "The current temperature in the Den is #{get_temperature.to_s}#{"\xC2\xB0"}C"
+		puts "The current temperature in the Master Bedroom is #{get_temperature.to_s}#{"\xC2\xB0"}C"
 	end
 
 	def get_temperature
@@ -84,11 +84,13 @@ i = 0
 
 while i < 1 do
 	thermometer.print_temperature
-	temperature = den.get_temperature.to_i
-	if temperature > 27
-		relay.switch_on_cool
+	temperature = thermometer.get_temperature.to_f
+	if temperature > 27.5
+		thermostat.switch_on_cool
+		puts "Cooling Activated"
 	else
-		relay.switch_off_cool
+		thermostat.switch_off_cool
+		puts "Cooling Deactivated"
 	end
 	sleep(5)
 end
