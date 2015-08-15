@@ -84,15 +84,11 @@ i = 0
 
 while i < 1 do
 	thermometer.print_temperature
-	# temperature = den.get_temperature.to_i
-	# if temperature > 24
-	# 	relay.switch_off_heat
-	# 	sleep(2)
-	# 	relay.switch_on_cool
-	# else
-	# 	relay.switch_off_cool
-	# 	sleep(2)
-	# 	relay.switch_on_heat
-	# end
-	# sleep(1)
+	temperature = den.get_temperature.to_i
+	if temperature > 27
+		relay.switch_on_cool
+	else
+		relay.switch_off_cool
+	end
+	sleep(5)
 end
