@@ -84,8 +84,8 @@ i = 0
 
 while i < 1 do
 	thermometer.print_temperature
-	temperature = thermometer.get_temperature.to_f
-	if temperature > 27.5
+	temperature = thermometer.get_temperature.to_i
+	if temperature >= 23
 		thermostat.switch_on_cool
 		puts "Cooling Activated"
 	else
