@@ -2,9 +2,11 @@ require File.join(File.dirname(__FILE__), 'thermometer.rb')
 require File.join(File.dirname(__FILE__), 'relaycontrol.rb')
 
 thermometer = Thermometer.new
-# thermostat = RelaySwitcher.new
+thermostat = RelaySwitcher.new
 
-thermometer.print_temperature
+thermostat.switch_on_fan
+
+# thermometer.print_temperature
 # temperature = thermometer.get_temperature.to_i
 # 	if temperature >= 23
 # 		thermostat.switch_on_cool
