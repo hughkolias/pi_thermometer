@@ -1,6 +1,6 @@
 class Thermometer
 
-	def initialize(serial_number ='28*')
+	def initialize(serial_number ='28-000005309f19')
 		@serial_number = serial_number
 		@file_directory = '/sys/bus/w1/devices/' + @serial_number + '/w1_slave'
 	end
