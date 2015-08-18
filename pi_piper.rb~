@@ -1,0 +1,23 @@
+module PiPiper
+
+class Pin
+
+	attr_accessor :pin, :direction
+
+	def initialize(params = {})
+		@pin = params.fetch(:pin, 'some')
+		@direction = params.fetch(:direction, 'test')
+	end
+
+  	def to_s
+   	 "#{pin} #{direction}"
+  	end
+
+	def on
+		@pin = params.replace(:pin, 'on')
+
+end
+
+end
+
+puts(PiPiper::Pin.new(:pin => 17, :direction => :out))

@@ -4,7 +4,7 @@ include PiPiper
 
 class RelaySwitcher
 
-	attr_accessor :compressor, :fan, :heat #comment out after done test
+	attr_accessor :compressor #comment out after done test
 
 	def initialize
 		@compressor = PiPiper::Pin.new(:pin => 17, :direction => :out)
@@ -52,4 +52,4 @@ class RelaySwitcher
 end
 
 test = RelaySwitcher.new
-test.switch_on_heat
+test.compressor

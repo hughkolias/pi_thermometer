@@ -15,4 +15,8 @@ class Thermometer
 		$_[29..-1].to_f/1000
 	end
 
+	def print_to_database
+		puts 'printing to database...' #define a class for this
+	end
+
 end
