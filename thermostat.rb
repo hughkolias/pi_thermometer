@@ -3,9 +3,11 @@ require File.join(File.dirname(__FILE__), 'relaycontrol.rb')
 
 class Thermostat
 
+	attr_reader :thermostat, :thermometer, :temperature
+
 	def initialize
 		@thermostat = RelaySwitcher.new
-		@temperature = Thermometer.new
+		@thermometer = Thermometer.new
 	end
 
 	def fan_mode
@@ -16,7 +18,7 @@ class Thermostat
 	def cool_mode
 		self.off_mode
 		@temperature = @thermometer.get_temperature.to_i
-		if temperature >= 23
+		if temperature >= 17
 			@thermostat.switch_on_cool
 			puts "Cooling Activated"
 		else
@@ -28,7 +30,7 @@ class Thermostat
 	def heat_mode
 		self.off_mode
 		@temperature = @thermometer.get_temperature.to_i
-		if @temperature <= 25
+		if @temperature <= 19
 			@thermostat.switch_on_heat
 			puts "Heating Activated"
 		else
@@ -40,9 +42,6 @@ class Thermostat
 	def off_mode
 		@temperature = @thermometer.get_temperature.to_i	
 		@thermostat.switch_off_heat
-		@thermostat.switch_off_cool
-		@thermostat.switch_off_fan
-		puts 'turned off'
 	end
 
 end

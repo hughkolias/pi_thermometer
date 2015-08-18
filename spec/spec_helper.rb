@@ -19,7 +19,7 @@
 
 require_relative '../relaycontrol'
 require_relative '../thermometer'
-#require_relative '../thermostat'
+require_relative '../thermostat'
 #require_relative '../init'
 
 RSpec.configure do |config|
