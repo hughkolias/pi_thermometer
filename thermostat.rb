@@ -11,14 +11,18 @@ class Thermostat
 	end
 
 	def fan_mode
-		self.off_mode
+		@thermostat.switch_off_cool
+		sleep(2)
+		@thermostat.switch_off_heat
+		sleep(2)
 		@thermostat.switch_on_fan
 	end
 
-	def cool_mode
-		self.off_mode
+	def cool_mode(temp)
+		@thermostat.switch_off_heat
+		sleep(2)
 		@temperature = @thermometer.get_temperature.to_i
-		if temperature >= 17
+		if temperature >= temp
 			@thermostat.switch_on_cool
 			puts "Cooling Activated"
 		else
@@ -27,10 +31,9 @@ class Thermostat
 		end
 	end
 
-	def heat_mode
-		self.off_mode
+	def heat_mode(temp)
 		@temperature = @thermometer.get_temperature.to_i
-		if @temperature <= 19
+		if @temperature <= temp
 			@thermostat.switch_on_heat
 			puts "Heating Activated"
 		else

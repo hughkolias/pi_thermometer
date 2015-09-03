@@ -17,8 +17,7 @@ end
 
 describe "Thermometer#fan_mode" do
 	it "should switch on the fan" do	
-		@thermostat.fan_mode	
-		expect(@thermostat.temperature).to eq(18)	
+		@thermostat.fan_mode		
 		expect(@thermostat.thermostat.compressor.status).to eq("off")
 		expect(@thermostat.thermostat.fan.status).to eq("on")
 		expect(@thermostat.thermostat.heat.status).to eq("off")
@@ -27,7 +26,7 @@ end
 
 describe "Thermometer#cool_mode" do
 	it "should switch on cooling cycle" do	
-		@thermostat.cool_mode	
+		@thermostat.cool_mode(16)
 		expect(@thermostat.temperature).to eq(18)		
 		expect(@thermostat.thermostat.compressor.status).to eq("on")
 		expect(@thermostat.thermostat.fan.status).to eq("on")
@@ -37,7 +36,7 @@ end
 
 describe "Thermometer#heat_mode" do
 	it "should switch on heating cycle" do	
-		@thermostat.heat_mode	
+		@thermostat.heat_mode(24)	
 		expect(@thermostat.temperature).to eq(18)		
 		expect(@thermostat.thermostat.compressor.status).to eq("on")
 		expect(@thermostat.thermostat.fan.status).to eq("on")
