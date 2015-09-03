@@ -10,8 +10,10 @@ i = 1
 
 while i>1 do
 
-	DbConnect.write_to_db(temperature.get_temperature, 'heat', 22)
+	# DbConnect.write_to_db(temperature.get_temperature)
 
+	puts DbConnect.read_webapp_user_set_temp
+	puts DbConnect.read_webapp_user_mode
 	sleep(60)
 
 end
