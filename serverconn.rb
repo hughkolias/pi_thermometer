@@ -10,8 +10,8 @@ class DbConnect
 		puts read_mode.getvalue(0,2) #must change 0 value here
 	end
 
-	def self.write_to_db(temp, mode, user_set_temp)
-		write_temp_mode(temp, mode, user_set_temp)
+	def self.write_to_db(temp)
+		write_temp_mode(temp)
 	end
 
 
@@ -25,17 +25,21 @@ class DbConnect
 		PGconn.connect(@connection)
 	end
 
-	def self.read_mode
-		pg_connect.exec('SELECT * FROM temperatures')
+	def self.read_temps_mode
+		pg_connect.exec('SELECT * FROM pitemps')
 	end 
 
-	def self.write_temp_mode(temp, mode, user_set_temp)
-		id = read_mode.cmd_tuples + 1
+	def self.read_webapp_mode
+		pg_connect.exec('SELECT * FROM pitemps')
+	end 
+
+	def self.write_temp_mode(temp)
+		id = read_temps_mode.cmd_tuples + 1
 		conn = pg_connect
-		conn.prepare('insert_values', 'insert into temperatures (id, temp, user_mode, user_set_temp, created_at, updated_at) values ($1, $2, $3, $4, $5, $6)')
-		conn.exec_prepared('insert_values', [ id, temp, 'cool', 20, Time.now, Time.now]) #these numbers should be variable
+		conn.prepare('insert_values', 'insert into temperatures (id, temp, created_at, updated_at) values ($1, $2, $3, $4, $5, $6)')
+		conn.exec_prepared('insert_values', [ id, temp, Time.now, Time.now]) #these numbers should be variable
 	end
 
 end
 
-DbConnect.write_to_db(23, 'cool', 22)
+DbConnect.write_to_db(24)
