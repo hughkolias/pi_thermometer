@@ -11,7 +11,7 @@ class DbConnect
 	end
 
 	def self.write_to_db(temp, mode, user_set_temp)
-		write_mode(temp, mode, user_set_temp)
+		write_temp_mode(temp, mode, user_set_temp)
 	end
 
 
@@ -37,3 +37,5 @@ class DbConnect
 	end
 
 end
+
+DbConnect.write_to_db(23, 'cool', 22)

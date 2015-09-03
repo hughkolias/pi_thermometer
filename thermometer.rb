@@ -12,14 +12,10 @@ class Thermometer
 	end
 
 	def get_temperature
-		@file_directory = 'thermo.txt' #comment this out for production!!
+		# @file_directory = 'thermo.txt' #comment this out for production!!
 		f = File.open(@file_directory, 'r')
 		2.times{ f.gets }
-		$_[29..-1].to_f/1000
-	end
-
-	def print_to_database
-		puts 'printing to database...' #define a class for this
+		$_[29..-1].to_i/1000
 	end
 
 end
