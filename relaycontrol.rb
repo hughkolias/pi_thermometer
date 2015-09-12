@@ -1,10 +1,10 @@
-require File.join(File.dirname(__FILE__), 'pipiper.rb') #comment out after done test
-#require 'pi_piper'
+#require File.join(File.dirname(__FILE__), 'pipiper.rb') #comment out after done test
+require 'pi_piper'
 include PiPiper
 
 class RelaySwitcher
 
-	attr_accessor :compressor, :fan, :heat #comment out after done test
+	#attr_accessor :compressor, :fan, :heat #comment out after done test
 
 	def initialize
 		@compressor = PiPiper::Pin.new(:pin => 17, :direction => :out)
@@ -50,6 +50,3 @@ class RelaySwitcher
  
 
 end
-
-test = RelaySwitcher.new
-test.switch_on_heat

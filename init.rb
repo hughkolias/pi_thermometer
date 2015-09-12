@@ -10,10 +10,21 @@ i = 1
 
 while i>1 do
 
-	# DbConnect.write_to_db(temperature.get_temperature)
+	DbConnect.write_to_db(temperature.get_temperature) #1
+	user_set_temp = DbConnect.read_webapp_user_set_temp #2
+	user_mode = DbConnect.read_webapp_user_mode #2
 
-	puts DbConnect.read_webapp_user_set_temp
-	puts DbConnect.read_webapp_user_mode
+	case user_mode
+	when "Fan"
+		thermostat.fan_mode
+	when "Cool"
+		thermostat.cool_mode(user_set_temp)
+	when "Heat"
+		thermostat.heat_mode(user_set_temp)
+	when "Off"
+		thermostat.off_mode
+	end
+
 	sleep(60)
 
 end
