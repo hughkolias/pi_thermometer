@@ -8,7 +8,7 @@ temperature = Thermometer.new
 
 i = 1
 
-while i<1 do
+while i<2 do
 
 	DbConnect.write_to_db(temperature.get_temperature) #1
 	user_set_temp = DbConnect.read_webapp_user_set_temp #2
@@ -18,9 +18,9 @@ while i<1 do
 	when "Fan"
 		thermostat.fan_mode
 	when "Cool"
-		thermostat.cool_mode(user_set_temp)
+		thermostat.cool_mode(user_set_temp.to_i)
 	when "Heat"
-		thermostat.heat_mode(user_set_temp)
+		thermostat.heat_mode(user_set_temp.to_i)
 	when "Off"
 		thermostat.off_mode
 	end
