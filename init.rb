@@ -8,7 +8,7 @@ temperature = Thermometer.new
 
 i = 1
 
-while i>1 do
+while i=1 do
 
 	DbConnect.write_to_db(temperature.get_temperature) #1
 	user_set_temp = DbConnect.read_webapp_user_set_temp #2

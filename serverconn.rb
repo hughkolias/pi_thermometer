@@ -3,15 +3,15 @@ require 'pg'
 class DbConnect
 
 	def self.read_webapp_user_set_temp
-		id = read_webapp_mode.cmd_tuples -1
-		puts read_webapp_mode.getvalue(id,1) #must change 0 value to be last one
+		id = read_webapp_mode.cmd_tuples
+		puts read_webapp_mode.getvalue(id-1,2) #must change 0 value to be last one
 		pg_connect.close
 
 	end
 
 	def self.read_webapp_user_mode
-		id = read_webapp_mode.cmd_tuples - 1
-		puts read_webapp_mode.getvalue(id,2) #must change 0 value here
+		id = read_webapp_mode.cmd_tuples
+		puts read_webapp_mode.getvalue(id-1,1) #must change 0 value here
 		pg_connect.close
 	end
 
@@ -40,7 +40,7 @@ class DbConnect
 	end 
 
 	def self.read_webapp_mode
-		pg_connect.exec('SELECT * FROM temperatures')
+		pg_connect.exec('SELECT * FROM thermostats')
 	end 
 
 	def self.write_temp_mode(temp)
@@ -53,8 +53,8 @@ class DbConnect
 	def self.write_webapp_mode(temp, user_mode, user_set_temp)
 		id = read_webapp_mode.cmd_tuples + 1
 		conn = pg_connect
-		conn.prepare('insert_values', 'insert into temperatures (id, temp, user_mode, user_set_temp, created_at, updated_at) values ($1, $2, $3, $4, $5, $6)')
-		conn.exec_prepared('insert_values', [ id, temp, user_mode, user_set_temp, Time.now, Time.now]) #these numbers should be variable
+		conn.prepare('insert_values', 'insert into thermostats (id, user_mode, user_set_temp, created_at, updated_at) values ($1, $2, $3, $4, $5, $6)')
+		conn.exec_prepared('insert_values', [ id, user_mode, user_set_temp, Time.now, Time.now]) #these numbers should be variable
 	end
 
 end
