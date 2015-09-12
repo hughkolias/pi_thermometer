@@ -4,14 +4,14 @@ class DbConnect
 
 	def self.read_webapp_user_set_temp
 		id = read_webapp_mode.cmd_tuples
-		puts read_webapp_mode.getvalue(id-1,2) #must change 0 value to be last one
+		return read_webapp_mode.getvalue(id-1,2) #must change 0 value to be last one
 		pg_connect.close
 
 	end
 
 	def self.read_webapp_user_mode
 		id = read_webapp_mode.cmd_tuples
-		puts read_webapp_mode.getvalue(id-1,1) #must change 0 value here
+		return read_webapp_mode.getvalue(id-1,1) #must change 0 value here
 		pg_connect.close
 	end
 
