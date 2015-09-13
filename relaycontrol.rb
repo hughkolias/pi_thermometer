@@ -29,6 +29,8 @@ class RelaySwitcher
 	end
 
 	def switch_on_cool
+		@heat.off
+		sleep(1)		
 		@fan.on
 		sleep(1)
 		@compressor.on
@@ -41,6 +43,10 @@ class RelaySwitcher
 	end
 
 	def switch_on_fan
+		@compressor.off
+		sleep(1)
+		@heat.off
+		sleep(1)
 		@fan.on
 	end
 

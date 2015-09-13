@@ -11,15 +11,10 @@ class Thermostat
 	end
 
 	def fan_mode
-		@thermostat.switch_off_cool
-		sleep(2)
-		@thermostat.switch_off_heat
-		sleep(2)
 		@thermostat.switch_on_fan
 	end
 
 	def cool_mode(temp)
-		@thermostat.switch_off_heat
 		sleep(2)
 		@temperature = @thermometer.get_temperature.to_i
 		if temperature >= temp
