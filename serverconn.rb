@@ -17,12 +17,10 @@ class DbConnect
 
 	def self.write_to_db(temp)
 		write_temp_mode(temp)
-		self.close
 	end
 
 	def self.write_to_webapp(temp, user_mode, user_set_temp)
 		write_webapp_mode(temp, user_mode, user_set_temp)
-		self.close
 	end
 
 	private
