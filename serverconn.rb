@@ -48,7 +48,7 @@ class DbConnect
 		conn = pg_connect
 		conn.prepare('insert_values', 'insert into pitemps (id, temp, created_at, updated_at) values ($1, $2, $3, $4)')
 		conn.exec_prepared('insert_values', [ id, temp, Time.now, Time.now]) #these numbers should be variable
-		self.close
+		conn.close
 	end
 
 	def self.write_webapp_mode(temp, user_mode, user_set_temp)
@@ -56,7 +56,7 @@ class DbConnect
 		conn = pg_connect
 		conn.prepare('insert_values', 'insert into thermostats (id, user_mode, user_set_temp, created_at, updated_at) values ($1, $2, $3, $4, $5, $6)')
 		conn.exec_prepared('insert_values', [ id, user_mode, user_set_temp, Time.now, Time.now]) #these numbers should be variable
-		self.close
+		conn.close
 	end
 
 end
