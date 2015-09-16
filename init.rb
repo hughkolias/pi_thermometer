@@ -30,7 +30,7 @@ while i < 2 do
 		thermostat.off_mode
 	end
 
-	sleep(2)
+	sleep(58)
 
 end
 	# 1. scrape glorious pi website for data
