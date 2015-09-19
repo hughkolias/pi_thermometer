@@ -33,14 +33,6 @@ class DbConnect
 		PGconn.connect(@connection)
 	end
 
-	#def self.read_temps_mode
-	#	pg_connect.exec('SELECT * FROM pitemps')
-	#end 
-
-	#def self.read_webapp_mode
-	#	pg_connect.exec('SELECT * FROM thermostats')
-	#end 
-
 	def self.write_temp_mode(temp)
 		@conn = pg_connect
 		id = @conn.exec('SELECT * FROM pitemps').cmd_tuples + 1
