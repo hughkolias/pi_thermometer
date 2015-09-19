@@ -14,7 +14,7 @@ while i < 2 do
 		if Time.now.min == 0 || Time.now.min == 10 || 
 		   Time.now.min == 20 || Time.now.min == 30 || 
 		   Time.now.min == 40 || Time.now.min == 50 then
-		    	DbConnect.write_to_db(temperature.get_temperature) #1
+		   DbConnect.write_to_db(temperature.get_temperature) #1
 		end
 
 		user_set_temp = DbConnect.read_webapp_user_set_temp #2
