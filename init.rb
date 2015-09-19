@@ -10,27 +10,31 @@ i = 1
 
 while i < 2 do
 
-	if Time.now.min == 0 || Time.now.min == 10 || 
-	   Time.now.min == 20 || Time.now.min == 30 || 
-	   Time.now.min == 40 || Time.now.min == 50 then
-	    	DbConnect.write_to_db(temperature.get_temperature) #1
-	end
+	#if able to connect to Db
+		if Time.now.min == 0 || Time.now.min == 10 || 
+		   Time.now.min == 20 || Time.now.min == 30 || 
+		   Time.now.min == 40 || Time.now.min == 50 then
+		    	DbConnect.write_to_db(temperature.get_temperature) #1
+		end
 
-	user_set_temp = DbConnect.read_webapp_user_set_temp #2
-	user_mode = DbConnect.read_webapp_user_mode #2
+		user_set_temp = DbConnect.read_webapp_user_set_temp #2
+		user_mode = DbConnect.read_webapp_user_mode #2
 
-	case user_mode
-	when "Fan"
-		thermostat.fan_mode
-	when "Cool"
-		thermostat.cool_mode(user_set_temp.to_i)
-	when "Heat"
-		thermostat.heat_mode(user_set_temp.to_i)
-	when "Off"
+		case user_mode
+		when "Fan"
+			thermostat.fan_mode
+		when "Cool"
+			thermostat.cool_mode(user_set_temp.to_i)
+		when "Heat"
+			thermostat.heat_mode(user_set_temp.to_i)
+		when "Off"
+			thermostat.off_mode
+		end
+	#else
 		thermostat.off_mode
-	end
+	#end
 
-	sleep(58)
+		sleep(58)
 
 end
 	# 1. scrape glorious pi website for data
