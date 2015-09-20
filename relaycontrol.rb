@@ -1,5 +1,5 @@
 #require File.join(File.dirname(__FILE__), 'pipiper.rb') #comment out after done test
-require_relative 'pi_piper'
+require 'pi_piper'
 include PiPiper
 
 class RelaySwitcher
