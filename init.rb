@@ -18,7 +18,7 @@ while i < 2 do
 		   DbConnect.write_to_db(temperature.get_temperature) #1
 		end
 
-		if Faraday.get('https://gloriouspi.herokuapp.com') >= 400
+		if Faraday.get('https://gloriouspi.herokuapp.com').status >= 400
 			user_mode = 'Off'
 		else
 			user_set_temp = DbConnect.read_webapp_user_set_temp #2
