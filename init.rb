@@ -18,12 +18,11 @@ while i < 2 do
 		   DbConnect.write_to_db(temperature.get_temperature) #1
 		end
 
-		if Faraday.get('https://gloriouspi.herokuapp') >= 400
+		if Faraday.get('https://gloriouspi.herokuapp.com') >= 400
 			user_mode = 'Off'
 		else
 			user_set_temp = DbConnect.read_webapp_user_set_temp #2
 			user_mode = DbConnect.read_webapp_user_mode #2
-			print user_mode
 		end
 
 		case user_mode
@@ -37,7 +36,7 @@ while i < 2 do
 			thermostat.off_mode
 		end
 
-		sleep(58)
+		sleep(31)
 
 		rescue PG::ConnectionBad, Faraday::ConnectionFailed
 		user_mode = 'Off'
