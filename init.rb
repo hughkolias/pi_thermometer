@@ -2,6 +2,7 @@ require File.join(File.dirname(__FILE__), 'thermometer.rb')
 require File.join(File.dirname(__FILE__), 'relaycontrol.rb')
 require File.join(File.dirname(__FILE__), 'thermostat.rb')
 require File.join(File.dirname(__FILE__), 'serverconn.rb')
+require 'faraday'
 
 thermostat = Thermostat.new
 temperature = Thermometer.new
@@ -10,15 +11,22 @@ i = 1
 
 while i < 2 do
 
-	#if able to connect to Db
+	begin
 		if Time.now.min == 0 || Time.now.min == 10 || 
 		   Time.now.min == 20 || Time.now.min == 30 || 
 		   Time.now.min == 40 || Time.now.min == 50 then
 		   DbConnect.write_to_db(temperature.get_temperature) #1
 		end
 
-		user_set_temp = DbConnect.read_webapp_user_set_temp #2
-		user_mode = DbConnect.read_webapp_user_mode #2
+		if Faraday.get('https://gloriouspi.herokuapp') >= 400
+			user_mode = 'Off'
+		else
+			user_set_temp = DbConnect.read_webapp_user_set_temp #2
+			user_mode = DbConnect.read_webapp_user_mode #2
+		end
+	rescue PG::ConnectionBad, Faraday::ConnectionFailed
+		user_mode = 'Off'
+	end
 
 		case user_mode
 		when "Fan"
@@ -30,9 +38,6 @@ while i < 2 do
 		when "Off"
 			thermostat.off_mode
 		end
-	#else
-		thermostat.off_mode
-	#end
 
 		sleep(58)
 
