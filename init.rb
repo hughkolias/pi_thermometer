@@ -23,10 +23,8 @@ while i < 2 do
 		else
 			user_set_temp = DbConnect.read_webapp_user_set_temp #2
 			user_mode = DbConnect.read_webapp_user_mode #2
+			print user_mode
 		end
-	rescue PG::ConnectionBad, Faraday::ConnectionFailed
-		user_mode = 'Off'
-	end
 
 		case user_mode
 		when "Fan"
@@ -40,6 +38,10 @@ while i < 2 do
 		end
 
 		sleep(58)
+
+		rescue PG::ConnectionBad, Faraday::ConnectionFailed
+		user_mode = 'Off'
+	end
 
 end
 	# 1. scrape glorious pi website for data
