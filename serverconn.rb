@@ -1,4 +1,4 @@
-require 'pg'
+require_relative 'pg'
 
 class DbConnect
 

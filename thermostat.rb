@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__), 'thermometer.rb')
-require File.join(File.dirname(__FILE__), 'relaycontrol.rb')
+require_relative File.join(File.dirname(__FILE__), 'thermometer.rb')
+require_relative File.join(File.dirname(__FILE__), 'relaycontrol.rb')
 
 class Thermostat
 

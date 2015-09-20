@@ -1,7 +1,7 @@
-require File.join(File.dirname(__FILE__), 'thermometer.rb')
-require File.join(File.dirname(__FILE__), 'relaycontrol.rb')
-require File.join(File.dirname(__FILE__), 'thermostat.rb')
-require File.join(File.dirname(__FILE__), 'serverconn.rb')
+require_relative File.join(File.dirname(__FILE__), 'thermometer.rb')
+require_relative File.join(File.dirname(__FILE__), 'relaycontrol.rb')
+require_relative File.join(File.dirname(__FILE__), 'thermostat.rb')
+require_relative File.join(File.dirname(__FILE__), 'serverconn.rb')
 require_relative 'faraday'
 
 thermostat = Thermostat.new
