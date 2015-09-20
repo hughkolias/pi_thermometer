@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'thermometer.rb')
 require File.join(File.dirname(__FILE__), 'relaycontrol.rb')
 require File.join(File.dirname(__FILE__), 'thermostat.rb')
 require File.join(File.dirname(__FILE__), 'serverconn.rb')
-require 'faraday'
+require_relative 'faraday'
 
 thermostat = Thermostat.new
 temperature = Thermometer.new
