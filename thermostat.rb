@@ -43,3 +43,4 @@ class Thermostat
 	end
 
 end
+

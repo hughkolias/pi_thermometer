@@ -2,7 +2,7 @@ require_relative 'thermometer.rb'
 require_relative 'relaycontrol.rb'
 require_relative 'thermostat.rb'
 require_relative 'serverconn.rb'
-require_relative 'internet.rb'
+require 'faraday'
 
 thermostat = Thermostat.new
 temperature = Thermometer.new
@@ -17,8 +17,18 @@ while i < 2 do
 		   Time.now.min == 40 || Time.now.min == 50 then
 		   DbConnect.write_to_db(temperature.get_temperature) #1
 		end
-	
-		user_mode = 'Off' if internet_connection? == false
+
+		if Faraday.get('https://gloriouspi.herokuapp') >= 400
+			user_mode = 'Off'
+			puts "panic!!"
+		else
+			user_set_temp = DbConnect.read_webapp_user_set_temp #2
+			print user_set_temp
+			user_mode = DbConnect.read_webapp_user_mode #2
+			print user_mode		
+		end
+	rescue PG::ConnectionBad, Faraday::ConnectionFailed
+		user_mode = 'Off'
 
 		case user_mode
 		when "Fan"
@@ -31,14 +41,8 @@ while i < 2 do
 			thermostat.off_mode
 		end
 
-		sleep(31)
-
-		rescue PG::ConnectionBad, Faraday::ConnectionFailed
-		thermostat.off_mode
-		puts "connection error"
-		retry
+		sleep(30)
 	end
-
 end
 	# 1. scrape glorious pi website for data
 	# 2. use data to determine user_mode and user_set_temp

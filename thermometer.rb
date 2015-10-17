@@ -15,7 +15,10 @@ class Thermometer
 		# @file_directory = 'thermo.txt' #comment this out for production!!
 		f = File.open(@file_directory, 'r')
 		2.times{ f.gets }
-		$_[29..-1].to_f/1000
+		$_[29..-1].to_f/1000 - 4.938
 	end
 
 end
+
+t = Thermometer.new
+t.print_temperature
