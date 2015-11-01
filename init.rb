@@ -18,13 +18,10 @@ while i < 2 do
 		   DbConnect.write_to_db(temperature.get_temperature) #1
 		end
 	        
-                puts 'beginning sequence' 
                 user_mode = DbConnect.read_webapp_user_mode
 		user_set_temp = DbConnect.read_webapp_user_set_temp
 
 		user_mode = 'Off' if internet_connection? == false
-		puts user_mode
-		puts user_set_temp
 
 		case user_mode
 		when "Fan"
@@ -36,8 +33,6 @@ while i < 2 do
 		when "Off"
 			thermostat.off_mode
 		end
-
-                puts 'sleeping...'
 
 		sleep(31)
 
