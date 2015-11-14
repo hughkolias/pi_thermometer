@@ -19,6 +19,3 @@ class Thermometer
 	end
 
 end
-
-t = Thermometer.new
-t.print_temperature
