@@ -18,7 +18,7 @@ while i < 2 do
 		   DbConnect.write_to_db(temperature.get_temperature) #1
 		end
 	        
-                user_mode = DbConnect.read_webapp_user_mode
+        user_mode = DbConnect.read_webapp_user_mode
 		user_set_temp = DbConnect.read_webapp_user_set_temp
 
 		user_mode = 'Off' if internet_connection? == false
