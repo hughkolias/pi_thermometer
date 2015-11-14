@@ -44,3 +44,6 @@ class Thermostat
 
 end
 
+bob = Thermostat.new
+
+bob.off_mode
