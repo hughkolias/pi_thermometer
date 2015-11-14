@@ -5,7 +5,7 @@ class DbConnect
 	def self.read_webapp_user_set_temp
 		@conn = pg_connect
 		id = @conn.exec('SELECT * FROM thermostats').cmd_tuples
-		@value = @conn.exec('SELECT * FROM thermostats').getvalue(id,2)
+		@value = @conn.exec('SELECT * FROM thermostats').getvalue(id-1,2)
 		@conn.close
 		return @value
 	end
@@ -13,7 +13,7 @@ class DbConnect
 	def self.read_webapp_user_mode
 		@conn = pg_connect
 		id = @conn.exec('SELECT * FROM thermostats').cmd_tuples
-		@value = @conn.exec('SELECT * FROM thermostats').getvalue(id,1)
+		@value = @conn.exec('SELECT * FROM thermostats').getvalue(id-1,1)
 		@conn.close
 		return @value
 	end
