@@ -29,7 +29,7 @@ class DbConnect
 	private
 
 	def self.pg_connect
-		@connection = {:host => 'ec2-23-23-126-39.compute-1.amazonaws.com', :dbname => 'dc383pgrh1blhu', :user => 'ihtyvhunepdkkl', :port => 5432, :password => 'T4CfPn_Vo1MTlB0IWuBqyBBfsm'}
+		@connection = {:host => 'ec2-75-101-143-150.compute-1.amazonaws.com', :dbname => 'd8v42p4qc9aftr', :user => 'sowvljadrmutwq', :port => 5432, :password => 'mCcOyQr62UoxWTE24nyJoLYcQr'}
 		PGconn.connect(@connection)
 	end
 
@@ -50,4 +50,3 @@ class DbConnect
 	end
 
 end
-
